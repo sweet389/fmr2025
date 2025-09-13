@@ -1,5 +1,4 @@
 import network
-import time
 
 class wifi:
     def __init__(self):
@@ -11,7 +10,7 @@ class wifi:
         self.ap.config(ssid=ssid, password=passwd)
         network.hostname(hostname)
         print(self.ap.ifconfig()[0])
-        return self.ap.ifconfig()[0]
+        return self.ap.ifconfig()
 
     def wifi_con(self,ssid,password):
         print(f"[*] Trying connection on {ssid} with pass {password}")
@@ -21,6 +20,7 @@ class wifi:
         while not self.wifi.isconnected():
             pass
         print(f"[*] Sucessful connection on {ssid} \n[*] Your IP is: {self.wifi.ifconfig()}")
+        return ssid, self.wifi.ifconfig()[0]
         
     def scan(self):
         wlan = network.WLAN(network.STA_IF)
